@@ -46,8 +46,8 @@ try{
     }
 }
 catch(err){
-    console.log("Error in signup controller", error.message);
-		res.status(500).json({ error: "Internal Server Error" });
+    console.log("Error in signup controller", err.message);
+		res.status(500).json({ err: "Internal Server Error" });
 }
 }
 
