@@ -10,8 +10,8 @@ try{
         return res.status(400).json({ error: "Passwords don't match" });
     }
 
-    const user = await User.create({username})
-
+    const user = await User.findOne({username})
+    
     if(user){
         return res.status( 201).json({error:"Username already exists"})
     }
@@ -20,16 +20,17 @@ try{
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const boyProfilePic = `https://avatar.iran.liara.run/public/boy?username=${username}`;
-	const girlProfilePic = `https://avatar.iran.liara.run/public/girl?username=${username}`;
+    const boyProfilePic = `https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250`;
+	
 
     const newUser = new User({
         fullName,
         username,
         password: hashedPassword,
         gender,
-        profilePic: gender === "male" ? boyProfilePic : girlProfilePic,
+        profilePic:  boyProfilePic 
     });
+    
     if (newUser) {
         // Generate JWT token here
         generateTokenAndSetCookie(newUser._id, res);

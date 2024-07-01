@@ -22,7 +22,7 @@ app.use("/api/auth",authRoutes)
 app.use("/api/users",userRoutes)
 app.use("/api/messages",messageRoutes)
 
-
+// TEST
 
 // SERVER RUNNING MESSAGE
 server.listen(PORT,()=>{
